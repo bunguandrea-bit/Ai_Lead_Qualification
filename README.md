@@ -4,7 +4,7 @@
 
 ## The problem
 
-Small businesses receive leads from several channels and qualify them by hand: who is serious, how big is the budget, how urgent is the request. This workflow does the first pass automatically and returns a priority (`ALTO` / `MEDIO` / `BASSO`) that sales can sort by.
+Small businesses receive leads from several channels and qualify them by hand: who is serious, how big is the budget, how urgent is the request. This workflow does the first pass automatically and returns a priority (`` / `MEDIUM` / `LOW`) that sales can sort by.
 
 ## How it works
 
@@ -24,7 +24,7 @@ POST /webhook/api/leads
 **Design choices**
 
 - The LLM only *extracts*; it never decides the priority. The prompt forbids inventing budget or urgency (unknown values must be `null` / `"unknown"`).
-- Scoring is deterministic and easy to explain to a client: budget up to 40 points (>= 5000: 40, >= 3000: 30, >= 1000: 20, below: 10) plus urgency up to 30 points (high 30, medium 20, low 10). Total >= 60 is `ALTO`, 30-59 is `MEDIO`, below 30 is `BASSO`.
+- Scoring is deterministic and easy to explain to a client: budget up to 40 points (>= 5000: 40, >= 3000: 30, >= 1000: 20, below: 10) plus urgency up to 30 points (high 30, medium 20, low 10). Total >= 60 is `HIGH`, 30-59 is `MEDIUM`, below 30 is `LOW`.
 - Inserts use `ON CONFLICT (transaction_hash) DO NOTHING` so repeated submissions do not create duplicates.
 
 ## Run it locally
@@ -60,7 +60,7 @@ This is an MVP. What it does not do yet:
 - No retry or error branch when the LLM returns invalid JSON; the flow still reaches the database step with an error object.
 - The lead hash is built from name + email + company, so the same person cannot submit a second, different message.
 - Query parameters are passed as a comma-separated string, which breaks if a text field contains a comma. Switching to an array is planned.
-- No CRM sync or notifications yet (Slack/email alert for `ALTO` leads is the next step).
+- No CRM sync or notifications yet (Slack/email alert for `HIGH` leads is the next step).
 - Validation messages and some comments are in Italian.
 
 ## Tech stack
