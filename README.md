@@ -4,7 +4,7 @@
 
 ## The problem
 
-Small businesses receive leads from several channels and qualify them by hand: who is serious, how big is the budget, how urgent is the request. This workflow does the first pass automatically and returns a priority (`ALTO` / `MEDIUM` / `LOW`) that sales can sort by.
+Small businesses receive leads from several channels and qualify them by hand: who is serious, how big is the budget, how urgent is the request. This workflow does the first pass automatically and returns a priority (`HIGH` / `MEDIUM` / `LOW`) that sales can sort by.
 
 ## How it works
 
