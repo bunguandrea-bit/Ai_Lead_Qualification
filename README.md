@@ -1,5 +1,7 @@
 # AI Lead Qualification
 
+![n8n](https://img.shields.io/badge/n8n-workflow-orange) ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-blue) ![Docker](https://img.shields.io/badge/Docker-compose-blue) ![OpenAI](https://img.shields.io/badge/OpenAI-gpt--4o--mini-green)
+
 > n8n workflow that receives a lead through a webhook, extracts structured data with an LLM, scores it with transparent rules and stores it in PostgreSQL.
 
 ## The problem
@@ -61,8 +63,7 @@ This is an MVP. What it does not do yet:
 - The lead hash is built from name + email + company, so the same person cannot submit a second, different message.
 - Query parameters are passed as a comma-separated string, which breaks if a text field contains a comma. Switching to an array is planned.
 - No CRM sync or notifications yet (Slack/email alert for `HIGH` leads is the next step).
-- Validation messages and some comments are in Italian.
 
 ## Tech stack
 
-n8n, PostgreSQL 16, OpenAI API (gpt-4o-mini), JavaScript (Code nodes), Docker Compose.
+n8n · PostgreSQL 16 · OpenAI API (gpt-4o-mini) · JavaScript (Code nodes) · Docker Compose
